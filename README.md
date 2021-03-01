@@ -1,6 +1,3 @@
 # Task Planner App
 
-[Heroku Task Planner App](https://lab4-taskplanner.herokuapp.com)
-
-
-[Azure Task Planner App](https://lab4-taskplanner.azurewebsites.net)
+[Firebase Task Planner App](https://task-planerjmd.web.app/)
