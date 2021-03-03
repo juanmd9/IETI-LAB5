@@ -76,7 +76,6 @@ export default function Login({setIsLoggedIn}) {
       setIsLoggedIn(false);
       loginFailed();
     }
-    console.log(JSON.parse(localStorage.getItem("isLoggedIn")));
   }
 
   createUser();

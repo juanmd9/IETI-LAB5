@@ -12,7 +12,8 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Profile from "./profile/Profile";
-import SingUp from "./singup/SingUp"
+import SingUp from "./singup/SingUp";
+import TransitionsModal from "./modal/Modal";
 
 function App() {
   // const LoginView = () => <Login success={loginSuccess} failed={loginFailed} />;
@@ -28,9 +29,9 @@ function App() {
   }));
   const { listTask, setListTask } = useListTask([]);
   const classes = useStyles();
-  console.log(listTask, "$$$$$$$$$")
   const todoAppView = () => (
     <div> 
+      <TransitionsModal />
       {listTask.map((task, index) => <div key={index}><SimpleCard  prueba={task} /><br /></div>)}
       <Fab color="primary" aria-label="add" className={classes.fab} href="/newtask">
         <AddIcon />

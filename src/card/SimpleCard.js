@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleCard(prueba) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
-  console.log("<<<", prueba)
 
   return (
     <Card className={classes.root}>

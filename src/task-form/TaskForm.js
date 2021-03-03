@@ -1,20 +1,23 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import Link from '@material-ui/core/Link';
 import Fab from '@material-ui/core/Fab';
 import Check from '@material-ui/icons/Check';
 import { useState } from "react";
 import Moment from 'moment';
 import FormControl from "@material-ui/core/FormControl";
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import { useHistory } from "react-router-dom";
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -41,9 +44,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function TaskForm({setListTask}) {
+export default function TaskForm({ setListTask }) {
     const history = useHistory();
-    console.log(!history, "3")
     async function handleSubmit(e) {
         const formData = new FormData(e.target);
         e.preventDefault();
@@ -51,7 +53,6 @@ export default function TaskForm({setListTask}) {
         for (let entry of formData.entries()) {
             newTask[entry[0]] = entry[1];
         }
-        console.log(newTask, "%&%&%&%&%");
         await setListTask([newTask]);
         history.push("/todo");
     }
@@ -110,7 +111,23 @@ export default function TaskForm({setListTask}) {
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12}>
-                                <FormControl margin="normal" required fullWidth>
+                                <FormControl variant="outlined" required fullWidth>
+                                    <InputLabel htmlFor="outlined-status-native-simple">Status</InputLabel>
+                                    <Select
+                                        native
+                                        label="Status"
+                                        inputProps={{
+                                            name: 'status',
+                                            id: 'outlined-status-native-simple',
+                                        }}
+                                    >
+                                        <option aria-label="None" value="" />
+                                        <option value={'Ready'}>Ready</option>
+                                        <option value={'In Progress'}>In Progress</option>
+                                        <option value={'Done'}>Done</option>
+                                    </Select>
+                                </FormControl>
+                                {/* <FormControl margin="normal" required fullWidth>
                                     <TextField
                                         variant="outlined"
                                         required
@@ -122,7 +139,7 @@ export default function TaskForm({setListTask}) {
                                         autoComplete="current-status"
                                         onChange={setStatus}
                                     />
-                                </FormControl>
+                                </FormControl> */}
                             </Grid>
                             <Grid item xs={12}>
                                 <FormControl margin="normal" required fullWidth>
@@ -160,4 +177,4 @@ export default function TaskForm({setListTask}) {
 
 TaskForm.propTypes = {
     setListTask: PropTypes.func.isRequired
-  }
+}
